@@ -8,5 +8,14 @@ node {
                 throw e
             }
         }
+        stage('Test') {
+            try {
+                sh 'mvn test'
+                step([$class: 'JUnitResultArchiver', testResults: 'target/surefire-reports/*.xml'])
+            } catch (Exception e) {
+                currentBuild.result = 'FAILURE'
+                throw e
+            }
+        }
     }
 }
