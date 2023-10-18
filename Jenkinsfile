@@ -17,5 +17,13 @@ node {
                 throw e
             }
         }
+        stage('Deliver') {
+            try {
+                sh './jenkins/scripts/deliver.sh'
+            } catch (Exception e) {
+                currentBuild.result = 'FAILURE'
+                throw e
+            }
+        }
     }
 }
