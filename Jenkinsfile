@@ -17,6 +17,9 @@ node {
                 throw e
             }
         }
+        stage('Manual Approval') {
+            input message: 'Lanjutkan ke tahap Deploy?'
+        }
         stage('Deploy') {
             try {
                 sh './jenkins/scripts/deliver.sh'
