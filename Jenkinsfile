@@ -17,9 +17,10 @@ node {
                 throw e
             }
         }
-        stage('Deliver') {
+        stage('Deploy') {
             try {
                 sh './jenkins/scripts/deliver.sh'
+                sh 'sleep 3m'
             } catch (Exception e) {
                 currentBuild.result = 'FAILURE'
                 throw e
